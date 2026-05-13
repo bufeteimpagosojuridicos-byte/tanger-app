@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tánger App">
+<title>Tánger · Rafa & Radia</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+:root {
+  --sand: #f5e6c8;
+  --sand2: #e8d5a3;
+  --terracota: #c0522a;
+  --terracota2: #a03d1a;
+  --teal: #1a7a6e;
+  --teal2: #125a50;
+  --gold: #d4a017;
+  --night: #1a1a2e;
+  --night2: #16213e;
+  --night3: #0f3460;
+  --white: #fefdf8;
+  --text-ar: 'Amiri', serif;
+  --text-es: 'Outfit', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: var(--text-es);
+  background: var(--night);
+  color: var(--white);
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* FONDO DECORATIVO */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; height: 300px;
+  background: radial-gradient(ellipse at 20% 0%, #0f3460aa 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 0%, #c0522a33 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HEADER */
+.header {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem 1rem;
+  text-align: center;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.logo-circle {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--terracota), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 20px #c0522a55;
+}
+.app-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+.app-subtitle {
+  font-size: 13px;
+  color: var(--sand2);
+  opacity: 0.8;
+  margin-top: 2px;
+}
+.app-subtitle span {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 0;
+  margin: 1rem 1rem 0;
+  background: rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 4px;
+  position: relative;
+  z-index: 1;
+}
+.tab-btn {
+  flex: 1;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--text-es);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 11px;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.tab-btn .icon { font-size: 18px; }
+.tab-btn.active {
+  background: var(--night3);
+  color: var(--sand);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* CONTENIDO */
+.content {
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* TRADUCTOR */
+.mic-section {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.mic-btn {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--terracota);
+  background: transparent;
+  color: var(--white);
+  font-size: 32px;
+  cursor: pointer;
+  margin: 0.5rem auto;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  position: relative;
+}
+.mic-btn:hover { background: rgba(192,82,42,0.15); }
+.mic-btn.recording {
+  background: var(--terracota);
+  border-color: var(--terracota);
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192,82,42,0.4); }
+  50% { box-shadow: 0 0 0 16px rgba(192,82,42,0); }
+}
+.mic-hint { text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+.input-area {
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--white);
+  font-family: var(--text-es);
+  font-size: 15px;
+  min-height: 60px;
+  resize: none;
+  margin-bottom: 10px;
+  outline: none;
+}
+.input-area:focus { border-color: var(--teal); }
+.input-area::placeholder { color: rgba(255,255,255,0.3); }
+
+.lang-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.lang-btn {
+  flex: 1;
+  padding: 7px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--text-es);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.lang-btn.active {
+  background: var(--teal2);
+  border-color: var(--teal);
+  color: var(--white);
+}
+
+.translate-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--terracota);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-family: var(--text-es);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 1rem;
+}
+.translate-btn:hover { background: var(--terracota2); }
+.translate-btn:disabled { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); }
+
+.result-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  min-height: 80px;
+  display: none;
+}
+.result-card.visible { display: block; }
+.result-arabic {
+  font-family: var(--text-ar);
+  font-size: 26px;
+  direction: rtl;
+  text-align: right;
+  color: var(--sand);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.result-phonetic {
+  font-size: 14px;
+  color: var(--gold);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.result-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 6px;
+  margin-top: 6px;
+}
+.result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.action-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: var(--text-es);
+}
+.action-btn:hover { background: rgba(255,255,255,0.08); }
+
+/* FRASES */
+.cat-chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+.cat-chips::-webkit-scrollbar { display: none; }
+.chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: var(--text-es);
+  transition: all 0.15s;
+}
+.chip.active {
+  background: var(--night3);
+  border-color: var(--teal);
+  color: var(--sand);
+}
+
+.phrase-list { display: flex; flex-direction: column; gap: 8px; }
+.phrase-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.phrase-item:hover { border-color: var(--teal); }
+.phrase-left { flex: 1; }
+.phrase-es { font-size: 14px; color: var(--white); margin-bottom: 3px; }
+.phrase-ph { font-size: 11px; color: var(--gold); font-style: italic; }
+.phrase-ar {
+  font-family: var(--text-ar);
+  font-size: 20px;
+  color: var(--sand);
+  direction: rtl;
+  text-align: right;
+  min-width: 90px;
+}
+
+/* EMERGENCIAS */
+.emer-item {
+  background: rgba(192,82,42,0.12);
+  border: 1px solid rgba(192,82,42,0.3);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.emer-item:hover { border-color: var(--terracota); }
+.emer-es { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+.emer-ar { font-family: var(--text-ar); font-size: 22px; color: var(--sand); direction: rtl; text-align: right; }
+.emer-ph { font-size: 11px; color: rgba(255,255,255,0.5); font-style: italic; margin-top: 3px; }
+
+/* GUÍA */
+.guide-section { margin-bottom: 1.2rem; }
+.guide-section h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.guide-item {
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid var(--teal);
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+.guide-item b { color: var(--sand); font-weight: 500; }
+
+/* NUMEROS */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.num-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+.num-n { font-size: 22px; font-weight: 600; color: var(--teal); }
+.num-ar { font-family: var(--text-ar); font-size: 20px; color: var(--sand); }
+.num-ph { font-size: 11px; color: rgba(255,255,255,0.4); font-style: italic; }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--teal);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 100;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* SPINNER */
+.spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo-circle">🕌</div>
+    <div>
+      <div class="app-title">Tánger</div>
+      <div class="app-subtitle">Para <span>Rafa &amp; Radia</span> · المغرب</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('traductor')">
+    <span class="icon">🎤</span>Traductor
+  </button>
+  <button class="tab-btn" onclick="switchTab('frases')">
+    <span class="icon">💬</span>Frases
+  </button>
+  <button class="tab-btn" onclick="switchTab('emergencias')">
+    <span class="icon">🚨</span>SOS
+  </button>
+  <button class="tab-btn" onclick="switchTab('numeros')">
+    <span class="icon">🔢</span>Números
+  </button>
+  <button class="tab-btn" onclick="switchTab('guia')">
+    <span class="icon">📖</span>Guía
+  </button>
+</div>
+
+<div class="content">
+
+  <!-- TAB: TRADUCTOR -->
+  <div id="tab-traductor" class="tab-panel active">
+    <div class="mic-section">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="lang-es" onclick="setLang('es')">🇪🇸 Español → Árabe</button>
+        <button class="lang-btn" id="lang-ar" onclick="setLang('ar')">🇲🇦 Árabe → Español</button>
+      </div>
+      <button class="mic-btn" id="mic-btn" onclick="toggleMic()" title="Pulsa para hablar">
+        🎤
+      </button>
+      <div class="mic-hint" id="mic-hint">Pulsa el micrófono o escribe abajo</div>
+      <textarea class="input-area" id="input-text" placeholder="Escribe aquí o usa el micrófono..." rows="2"></textarea>
+      <button class="translate-btn" id="btn-traducir" onclick="traducir()">Traducir</button>
+    </div>
+    <div class="result-card" id="result-card">
+      <div class="result-arabic" id="result-arabic"></div>
+      <div class="result-phonetic" id="result-phonetic"></div>
+      <div class="result-note" id="result-note"></div>
+      <div class="result-actions">
+        <button class="action-btn" onclick="copiar()">📋 Copiar</button>
+        <button class="action-btn" onclick="hablar()">🔊 Escuchar</button>
+        <button class="action-btn" onclick="compartir()">📤 Compartir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: FRASES -->
+  <div id="tab-frases" class="tab-panel">
+    <div class="cat-chips" id="cat-chips"></div>
+    <div class="phrase-list" id="phrase-list"></div>
+  </div>
+
+  <!-- TAB: EMERGENCIAS -->
+  <div id="tab-emergencias" class="tab-panel">
+    <div style="background:rgba(192,82,42,0.15);border:1px solid rgba(192,82,42,0.3);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:rgba(255,255,255,0.7)">
+      ⚠️ Toca cualquier frase para copiarla o escucharla
+    </div>
+    <div id="emer-list"></div>
+    <div style="margin-top:1rem;padding:12px;background:rgba(255,255,255,0.04);border-radius:12px;font-size:12px;color:rgba(255,255,255,0.5)">
+      <b style="color:var(--gold)">Teléfonos de emergencia en Marruecos:</b><br>
+      Policía: <b style="color:var(--sand)">19</b> · Urgencias: <b style="color:var(--sand)">15</b> · Bomberos: <b style="color:var(--sand)">15</b>
+    </div>
+  </div>
+
+  <!-- TAB: NÚMEROS -->
+  <div id="tab-numeros" class="tab-panel">
+    <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px">Toca un número para escuchar la pronunciación</div>
+    <div class="num-grid" id="num-grid"></div>
+  </div>
+
+  <!-- TAB: GUÍA -->
+  <div id="tab-guia" class="tab-panel">
+    <div class="guide-section">
+      <h3>💰 Dinero y regateo</h3>
+      <div class="guide-item"><b>Moneda:</b> Dírham marroquí (MAD). 1€ ≈ 10.5 MAD</div>
+      <div class="guide-item"><b>Regateo:</b> Normal en zocos. Empieza ofreciendo el 40-50% del precio pedido</div>
+      <div class="guide-item"><b>Propina:</b> 10% en restaurantes, 5-10 MAD a guías y porteros</div>
+    </div>
+    <div class="guide-section">
+      <h3>🕌 Costumbres</h3>
+      <div class="guide-item"><b>Saludar:</b> "As-salamu alaykum" es muy apreciado por los locales</div>
+      <div class="guide-item"><b>Ropa:</b> Hombros y rodillas cubiertos al visitar mezquitas</div>
+      <div class="guide-item"><b>Ramadán:</b> No comer/beber en público durante el día en este mes</div>
+      <div class="guide-item"><b>Fotos:</b> Pide siempre permiso antes de fotografiar personas</div>
+    </div>
+    <div class="guide-section">
+      <h3>🚕 Transporte en Tánger</h3>
+      <div class="guide-item"><b>Taxi petit (rojo):</b> Urbano, compartido, tarifas fijas. Negocia antes de subir</div>
+      <div class="guide-item"><b>Taxi grand (azul):</b> Interurbano. Tarifa oficial, pide que pongan el taxímetro</div>
+    </div>
+    <div class="guide-section">
+      <h3>🍽️ Comida típica</h3>
+      <div class="guide-item"><b>Tajín:</b> Guiso tradicional de carne/verduras en cazuela de barro</div>
+      <div class="guide-item"><b>Couscous:</b> Viernes es el día tradicional, pruébalo en casa local</div>
+      <div class="guide-item"><b>Atay:</b> Té de menta con azúcar. Rechazarlo es una falta de respeto</div>
+      <div class="guide-item"><b>Msemen:</b> Crepes marroquíes para desayuno, deliciosos con miel</div>
+    </div>
+    <div class="guide-section">
+      <h3>🏛️ Tánger imprescindible</h3>
+      <div class="guide-item"><b>Medina:</b> Barrio antiguo, pasea sin prisa por sus callejuelas</div>
+      <div class="guide-item"><b>Zoco Chico:</b> La plaza central, perfecta para tomar té y observar</div>
+      <div class="guide-item"><b>Cap Spartel:</b> Donde se unen el Atlántico y el Mediterráneo</div>
+      <div class="guide-item"><b>Cuevas de Hércules:</b> A 14 km, impresionantes cuevas naturales</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATOS ───────────────────────────────────────────────────────────
+
+const FRASES = [
+  { cat:'Saludos', es:'Hola / Buenos días', ar:'صباح الخير', ph:'Sbah l-kheir' },
+  { cat:'Saludos', es:'Buenas tardes/noches', ar:'مساء الخير', ph:'Msa l-kheir' },
+  { cat:'Saludos', es:'¿Cómo estás?', ar:'كيف داير/دايرة؟', ph:'Kif dayer/dayra?' },
+  { cat:'Saludos', es:'Bien, gracias', ar:'لاباس، شكراً', ph:'La bas, shukran' },
+  { cat:'Saludos', es:'Hasta luego', ar:'بسلامة', ph:'B-slama' },
+  { cat:'Básico', es:'Sí / No', ar:'إيه / لا', ph:'Iyeh / La' },
+  { cat:'Básico', es:'Por favor', ar:'عافاك', ph:'3afak' },
+  { cat:'Básico', es:'Gracias', ar:'شكراً', ph:'Shukran' },
+  { cat:'Básico', es:'Perdón / Lo siento', ar:'سماح ليا', ph:'Smah liya' },
+  { cat:'Básico', es:'No entiendo', ar:'ما فهمتش', ph:'Ma fhmtsh' },
+  { cat:'Básico', es:'¿Habla francés/español?', ar:'واش كتعرف تهدر فرانساوي؟', ph:'Wash kt3rf thdr fransawi?' },
+  { cat:'Compras', es:'¿Cuánto cuesta?', ar:'بشحال هاد الشي؟', ph:'Bshal had shi?' },
+  { cat:'Compras', es:'Es muy caro', ar:'غالي بزاف', ph:'Ghali bzzaf' },
+  { cat:'Compras', es:'¿Puede bajar el precio?', ar:'واش تقدر تنقص شوية؟', ph:'Wash tqdr tnqs shwiya?' },
+  { cat:'Compras', es:'Me lo llevo', ar:'غادي ناخدو', ph:'Ghadi nakhdu' },
+  { cat:'Compras', es:'Sólo estoy mirando', ar:'غير كنشوف', ph:'Ghir knshof' },
+  { cat:'Restaurante', es:'Una mesa para dos', ar:'طابلة لجوج', ph:'Tabla l-juj' },
+  { cat:'Restaurante', es:'La carta, por favor', ar:'المينو عافاك', ph:'L-menu, 3afak' },
+  { cat:'Restaurante', es:'¡Está delicioso!', ar:'بنين بزاف!', ph:'Bnin bzzaf!' },
+  { cat:'Restaurante', es:'Sin alcohol, por favor', ar:'بلا كحول عافاك', ph:'Bla kuhul, 3afak' },
+  { cat:'Restaurante', es:'La cuenta, por favor', ar:'الحساب عافاك', ph:'L-hsab, 3afak' },
+  { cat:'Transporte', es:'¿Dónde está el taxi?', ar:'فين كاين الطاكسي؟', ph:'Fin kayn t-taxi?' },
+  { cat:'Transporte', es:'Llévame a la medina', ar:'ودني للمدينة', ph:'Wdni l-l-mdina' },
+  { cat:'Transporte', es:'¿Cuánto es el trayecto?', ar:'بشحال الريحة؟', ph:'Bshal r-riha?' },
+  { cat:'Alojamiento', es:'¿Tiene habitaciones libres?', ar:'واش عندك شي بيت خاوي؟', ph:'Wash 3ndk shi bit khawi?' },
+  { cat:'Alojamiento', es:'¿Cuánto es por noche?', ar:'بشحال الليلة؟', ph:'Bshal l-lila?' },
+  { cat:'Alojamiento', es:'¿Hay wifi?', ar:'واش كاين وايفاي؟', ph:'Wash kayn wifi?' },
+];
+
+const EMERGENCIAS = [
+  { es:'¡Ayuda!', ar:'عيوني!', ph:'3yuni!' },
+  { es:'¡Llame a la policía!', ar:'عيوط على البوليس!', ph:'3yut 3la l-bulis!' },
+  { es:'Necesito un médico', ar:'محتاج/ة طبيب', ph:'Mhtaj/a tbib' },
+  { es:'Estoy perdido/a', ar:'أنا ضايع/ة', ph:'Ana day3 / day3a' },
+  { es:'Me han robado', ar:'سرقوني', ph:'Srquni' },
+  { es:'¿Dónde está el hospital?', ar:'فين كاين السبيطار؟', ph:'Fin kayn s-sbitar?' },
+  { es:'Tengo una alergia', ar:'عندي حساسية', ph:'3ndi hassasiya' },
+  { es:'Me duele el estómago', ar:'كيضرني كرشي', ph:'Kdyarni krshi' },
+  { es:'Necesito agua', ar:'محتاج/ة الما', ph:'Mhtaj/a l-ma' },
+  { es:'¿Dónde está la embajada española?', ar:'فين كاينة السفارة الاسبانية؟', ph:'Fin kayna s-sifara l-isbaniya?' },
+];
+
+const NUMEROS = [
+  {n:0,ar:'صفر',ph:'sifr'},{n:1,ar:'واحد',ph:'wahed'},{n:2,ar:'جوج',ph:'juj'},
+  {n:3,ar:'تلاتة',ph:'tlata'},{n:4,ar:'ربعة',ph:'rb3a'},{n:5,ar:'خمسة',ph:'khmsa'},
+  {n:6,ar:'ستة',ph:'stta'},{n:7,ar:'سبعة',ph:'sb3a'},{n:8,ar:'تمنية',ph:'tmnya'},
+  {n:9,ar:'تسعود',ph:'ts3ud'},{n:10,ar:'عشرة',ph:'3shra'},{n:20,ar:'عشرين',ph:'3shrin'},
+  {n:50,ar:'خمسين',ph:'khmsin'},{n:100,ar:'مية',ph:'miya'},{n:1000,ar:'ألف',ph:'alf'},
+];
+
+// ─── ESTADO ───────────────────────────────────────────────────────────
+let currentLang = 'es';
+let currentCat = 'Saludos';
+let isRecording = false;
+let recognition = null;
+let lastResult = null;
+
+// ─── TABS ─────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  const idx = ['traductor','frases','emergencias','numeros','guia'].indexOf(name);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+// ─── IDIOMA ───────────────────────────────────────────────────────────
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('lang-es').classList.toggle('active', lang==='es');
+  document.getElementById('lang-ar').classList.toggle('active', lang==='ar');
+  const ta = document.getElementById('input-text');
+  ta.dir = lang==='ar' ? 'rtl' : 'ltr';
+  ta.placeholder = lang==='ar' ? 'اكتب بالعربية أو استخدم الميكروفون...' : 'Escribe aquí o usa el micrófono...';
+  document.getElementById('result-card').classList.remove('visible');
+}
+
+// ─── MICRÓFONO ────────────────────────────────────────────────────────
+function toggleMic() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    showToast('Micrófono no disponible en este navegador');
+    return;
+  }
+  if (isRecording) { stopMic(); return; }
+  startMic();
+}
+
+function startMic() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.lang = currentLang === 'ar' ? 'ar-MA' : 'es-ES';
+  recognition.continuous = false;
+  recognition.interimResults = true;
+
+  recognition.onstart = () => {
+    isRecording = true;
+    document.getElementById('mic-btn').classList.add('recording');
+    document.getElementById('mic-btn').textContent = '⏹';
+    document.getElementById('mic-hint').textContent = '🔴 Escuchando... (toca para parar)';
+  };
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    document.getElementById('input-text').value = transcript;
+  };
+  recognition.onend = () => {
+    stopMic();
+    const txt = document.getElementById('input-text').value.trim();
+    if (txt) traducir();
+  };
+  recognition.onerror = () => {
+    stopMic();
+    showToast('No se pudo capturar audio');
+  };
+  recognition.start();
+}
+
+function stopMic() {
+  isRecording = false;
+  if (recognition) { try { recognition.stop(); } catch(e){} }
+  document.getElementById('mic-btn').classList.remove('recording');
+  document.getElementById('mic-btn').textContent = '🎤';
+  document.getElementById('mic-hint').textContent = 'Pulsa el micrófono o escribe abajo';
+}
+
+// ─── TRADUCCIÓN IA ────────────────────────────────────────────────────
+async function traducir() {
+  const txt = document.getElementById('input-text').value.trim();
+  if (!txt) { showToast('Escribe o di algo primero'); return; }
+  const btn = document.getElementById('btn-traducir');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Traduciendo...';
+  document.getElementById('result-card').classList.remove('visible');
+
+  const esAr = currentLang === 'es';
+  const prompt = esAr
+    ? `Eres experto en árabe marroquí (Dārija). Traduce del español al árabe marroquí coloquial usado en Tánger y Marruecos. NO uses árabe estándar moderno, usa el dialecto marroquí real.
+
+Frase: "${txt}"
+
+Responde SOLO con JSON sin texto adicional ni backticks:
+{"arabe":"[escritura árabe]","fonetica":"[pronunciación para hispanohablantes]","nota":"[consejo cultural breve si aplica, máx 8 palabras, o vacío]"}`
+    : `Eres experto en árabe marroquí (Dārija). Traduce del árabe marroquí al español. Interpreta el texto como hablaría alguien en Tánger.
+
+Frase en árabe: "${txt}"
+
+Responde SOLO con JSON sin texto adicional ni backticks:
+{"español":"[traducción al español]","explicacion":"[contexto cultural si aplica, máx 10 palabras, o vacío]"}`;
+
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 300,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await resp.json();
+    const raw = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
+    const clean = raw.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(clean);
+    lastResult = parsed;
+
+    const card = document.getElementById('result-card');
+    const arEl = document.getElementById('result-arabic');
+    const phEl = document.getElementById('result-phonetic');
+    const noEl = document.getElementById('result-note');
+
+    if (esAr) {
+      arEl.style.direction = 'rtl';
+      arEl.style.textAlign = 'right';
+      arEl.style.fontSize = '26px';
+      arEl.style.fontFamily = "var(--text-ar)";
+      arEl.textContent = parsed.arabe || '';
+      phEl.textContent = parsed.fonetica ? '🔤 ' + parsed.fonetica : '';
+      noEl.textContent = parsed.nota ? '💡 ' + parsed.nota : '';
+      noEl.style.display = parsed.nota ? 'block' : 'none';
+    } else {
+      arEl.style.direction = 'ltr';
+      arEl.style.textAlign = 'left';
+      arEl.style.fontSize = '20px';
+      arEl.style.fontFamily = "var(--text-es)";
+      arEl.textContent = parsed.español || '';
+      phEl.textContent = '';
+      noEl.textContent = parsed.explicacion ? '💡 ' + parsed.explicacion : '';
+      noEl.style.display = parsed.explicacion ? 'block' : 'none';
+    }
+    card.classList.add('visible');
+  } catch(e) {
+    showToast('Error de conexión. Intenta de nuevo.');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Traducir';
+}
+
+// ─── ACCIONES RESULTADO ───────────────────────────────────────────────
+function copiar() {
+  if (!lastResult) return;
+  const txt = lastResult.arabe || lastResult.español || '';
+  navigator.clipboard.writeText(txt).then(() => showToast('Copiado al portapapeles'));
+}
+
+function hablar() {
+  if (!lastResult) return;
+  const txt = lastResult.arabe || lastResult.español || '';
+  const lang = lastResult.arabe ? 'ar-MA' : 'es-ES';
+  const utt = new SpeechSynthesisUtterance(txt);
+  utt.lang = lang;
+  utt.rate = 0.85;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utt);
+}
+
+function compartir() {
+  if (!lastResult) return;
+  const texto = document.getElementById('input-text').value;
+  const trad = lastResult.arabe || lastResult.español || '';
+  const ph = lastResult.fonetica ? '\n🔤 ' + lastResult.fonetica : '';
+  const msg = `Tánger App 🕌\n${texto}\n→ ${trad}${ph}`;
+  if (navigator.share) {
+    navigator.share({ text: msg });
+  } else {
+    navigator.clipboard.writeText(msg).then(() => showToast('Texto copiado para compartir'));
+  }
+}
+
+// ─── FRASES ───────────────────────────────────────────────────────────
+function renderFrases() {
+  const cats = [...new Set(FRASES.map(f=>f.cat))];
+  const chips = document.getElementById('cat-chips');
+  chips.innerHTML = cats.map(c =>
+    `<button class="chip ${c===currentCat?'active':''}" onclick="filterCat('${c}')">${c}</button>`
+  ).join('');
+  const list = document.getElementById('phrase-list');
+  list.innerHTML = FRASES.filter(f=>f.cat===currentCat).map(f =>
+    `<div class="phrase-item" onclick="usarFrase('${f.es.replace(/'/g,"\\'")}')">
+      <div class="phrase-left">
+        <div class="phrase-es">${f.es}</div>
+        <div class="phrase-ph">${f.ph}</div>
+      </div>
+      <div class="phrase-ar">${f.ar}</div>
+    </div>`
+  ).join('');
+}
+
+function filterCat(cat) {
+  currentCat = cat;
+  renderFrases();
+}
+
+function usarFrase(es) {
+  const frase = FRASES.find(f=>f.es===es);
+  if (!frase) return;
+  // Escuchar pronunciación
+  const utt = new SpeechSynthesisUtterance(frase.ar);
+  utt.lang = 'ar-MA';
+  utt.rate = 0.85;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utt);
+  showToast('🔊 ' + frase.ph);
+}
+
+// ─── EMERGENCIAS ─────────────────────────────────────────────────────
+function renderEmergencias() {
+  document.getElementById('emer-list').innerHTML = EMERGENCIAS.map(e =>
+    `<div class="emer-item" onclick="accionEmergencia('${e.ar.replace(/'/g,"\\'")}','${e.ph.replace(/'/g,"\\'")}')">
+      <div class="emer-es">${e.es}</div>
+      <div class="emer-ar">${e.ar}</div>
+      <div class="emer-ph">${e.ph}</div>
+    </div>`
+  ).join('');
+}
+
+function accionEmergencia(ar, ph) {
+  const utt = new SpeechSynthesisUtterance(ar);
+  utt.lang = 'ar-MA';
+  utt.rate = 0.8;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utt);
+  navigator.clipboard.writeText(ar).catch(()=>{});
+  showToast('🔊 ' + ph + ' · Copiado');
+}
+
+// ─── NÚMEROS ─────────────────────────────────────────────────────────
+function renderNumeros() {
+  document.getElementById('num-grid').innerHTML = NUMEROS.map(n =>
+    `<div class="num-card" onclick="hablarNumero('${n.ar}','${n.ph}')">
+      <div class="num-n">${n.n}</div>
+      <div class="num-ar">${n.ar}</div>
+      <div class="num-ph">${n.ph}</div>
+    </div>`
+  ).join('');
+}
+
+function hablarNumero(ar, ph) {
+  const utt = new SpeechSynthesisUtterance(ar);
+  utt.lang = 'ar-MA';
+  utt.rate = 0.85;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utt);
+  showToast('🔊 ' + ph);
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────
+renderFrases();
+renderEmergencias();
+renderNumeros();
+
+// PWA Install
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+</script>
+</body>
+</html>
