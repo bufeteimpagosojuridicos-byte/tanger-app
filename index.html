@@ -769,7 +769,10 @@ Responde SOLO con JSON sin texto adicional ni backticks:
   try {
     const resp = await fetch("https://orange-boat-6d42.pedrosaborrero.workers.dev", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "anthropic-version": "2023-06-01"
+      },
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 300,
@@ -808,7 +811,10 @@ Responde SOLO con JSON sin texto adicional ni backticks:
     }
     card.classList.add('visible');
   } catch(e) {
-    showToast('Error de conexión. Intenta de nuevo.');
+    console.error('Error traducción:', e);
+    showToast('Error: ' + (e.message || 'Sin conexión'));
+    btn.disabled = false;
+    btn.textContent = 'Traducir';
   }
   btn.disabled = false;
   btn.textContent = 'Traducir';
