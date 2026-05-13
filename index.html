@@ -145,19 +145,22 @@ body::before {
   margin-bottom: 1rem;
 }
 .mic-btn {
-  width: 80px; height: 80px;
+  width: 90px; height: 90px;
   border-radius: 50%;
-  border: 2px solid var(--terracota);
-  background: transparent;
+  border: 2.5px solid var(--terracota);
+  background: rgba(192,82,42,0.1);
   color: var(--white);
-  font-size: 32px;
+  font-size: 36px;
   cursor: pointer;
   margin: 0.5rem auto;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
-.mic-btn:hover { background: rgba(192,82,42,0.15); }
+.mic-btn:active { transform: scale(0.93); background: rgba(192,82,42,0.3); }
 .mic-btn.recording {
   background: var(--terracota);
   border-color: var(--terracota);
@@ -505,6 +508,9 @@ body::before {
         🎤
       </button>
       <div class="mic-hint" id="mic-hint">Pulsa el micrófono o escribe abajo</div>
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:8px">
+        Requiere Chrome o Safari · Solo funciona en HTTPS
+      </div>
       <textarea class="input-area" id="input-text" placeholder="Escribe aquí o usa el micrófono..." rows="2"></textarea>
       <button class="translate-btn" id="btn-traducir" onclick="traducir()">Traducir</button>
     </div>
@@ -667,8 +673,10 @@ function setLang(lang) {
 
 // ─── MICRÓFONO ────────────────────────────────────────────────────────
 function toggleMic() {
-  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    showToast('Micrófono no disponible en este navegador');
+  const tieneAPI = ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+  if (!tieneAPI) {
+    showToast('⚠️ Usa Chrome o Safari para el micrófono');
+    document.getElementById('input-text').focus();
     return;
   }
   if (isRecording) { stopMic(); return; }
@@ -678,30 +686,52 @@ function toggleMic() {
 function startMic() {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   recognition = new SpeechRecognition();
-  recognition.lang = currentLang === 'ar' ? 'ar-MA' : 'es-ES';
+  recognition.lang = currentLang === 'ar' ? 'ar-SA' : 'es-ES';
   recognition.continuous = false;
   recognition.interimResults = true;
+  recognition.maxAlternatives = 1;
 
   recognition.onstart = () => {
     isRecording = true;
     document.getElementById('mic-btn').classList.add('recording');
     document.getElementById('mic-btn').textContent = '⏹';
-    document.getElementById('mic-hint').textContent = '🔴 Escuchando... (toca para parar)';
+    document.getElementById('mic-hint').textContent = '🔴 Escuchando... toca para parar';
+    document.getElementById('input-text').value = '';
+    document.getElementById('input-text').placeholder = '🎤 Hablando...';
   };
   recognition.onresult = (e) => {
-    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    let transcript = '';
+    for (let i = 0; i < e.results.length; i++) {
+      transcript += e.results[i][0].transcript;
+    }
     document.getElementById('input-text').value = transcript;
   };
   recognition.onend = () => {
-    stopMic();
     const txt = document.getElementById('input-text').value.trim();
-    if (txt) traducir();
-  };
-  recognition.onerror = () => {
     stopMic();
-    showToast('No se pudo capturar audio');
+    if (txt) {
+      showToast('✓ Voz capturada — traduciendo...');
+      setTimeout(() => traducir(), 300);
+    } else {
+      showToast('No se escuchó nada, inténtalo de nuevo');
+    }
   };
-  recognition.start();
+  recognition.onerror = (e) => {
+    stopMic();
+    if (e.error === 'not-allowed') {
+      showToast('❌ Permiso de micrófono denegado');
+    } else if (e.error === 'no-speech') {
+      showToast('No se detectó voz, inténtalo de nuevo');
+    } else {
+      showToast('Error de micrófono: ' + e.error);
+    }
+  };
+  try {
+    recognition.start();
+  } catch(e) {
+    showToast('No se pudo iniciar el micrófono');
+    stopMic();
+  }
 }
 
 function stopMic() {
@@ -737,7 +767,7 @@ Responde SOLO con JSON sin texto adicional ni backticks:
 {"español":"[traducción al español]","explicacion":"[contexto cultural si aplica, máx 10 palabras, o vacío]"}`;
 
   try {
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+    const resp = await fetch("https://orange-boat-6d42.pedrosaborrero.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
