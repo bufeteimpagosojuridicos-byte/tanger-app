@@ -769,12 +769,9 @@ Responde SOLO con JSON sin texto adicional ni backticks:
   try {
     const resp = await fetch("https://orange-boat-6d42.pedrosaborrero.workers.dev", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "anthropic-version": "2023-06-01"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-haiku-4-5-20251001",
         max_tokens: 300,
         messages: [{ role: "user", content: prompt }]
       })
