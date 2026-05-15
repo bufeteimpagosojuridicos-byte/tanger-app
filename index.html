@@ -463,6 +463,250 @@ body::before {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+/* ─── AMAZIGH ───────────────────────────────────────────────────────── */
+.amz-header {
+  text-align: center;
+  padding: 4px 0 12px;
+}
+.amz-header .amz-icon {
+  font-size: 30px;
+  background: linear-gradient(135deg, var(--terracota), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.amz-header .amz-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sand);
+  margin-top: 2px;
+}
+.amz-header .amz-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+}
+
+.amz-warn {
+  background: linear-gradient(135deg, rgba(212,160,23,0.12), rgba(192,82,42,0.08));
+  border: 1px solid rgba(212,160,23,0.35);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.45;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.amz-warn .amz-warn-ico {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.amz-warn b { color: var(--gold); font-weight: 600; }
+
+.amz-block-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+  padding-left: 2px;
+}
+
+/* Selector de variante */
+.amz-variant-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.amz-variant-btn {
+  padding: 9px 4px;
+  border-radius: 11px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  font-family: var(--text-es);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1.2;
+}
+.amz-variant-btn .amz-vname { font-weight: 600; font-size: 12px; }
+.amz-variant-btn .amz-vnative {
+  font-size: 14px;
+  color: var(--gold);
+  margin-top: 1px;
+}
+.amz-variant-btn.active {
+  background: linear-gradient(135deg, var(--teal2), var(--night3));
+  border-color: var(--teal);
+  color: var(--white);
+}
+.amz-variant-btn.active .amz-vnative { color: var(--sand); }
+
+/* Selector de dirección */
+.amz-dir-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.amz-dir-btn {
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  font-family: var(--text-es);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  line-height: 1.3;
+}
+.amz-dir-btn.active {
+  background: var(--teal2);
+  border-color: var(--teal);
+  color: var(--white);
+}
+.amz-dir-auto {
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px dashed rgba(212,160,23,0.5);
+  background: rgba(212,160,23,0.08);
+  color: var(--gold);
+  font-family: var(--text-es);
+  font-size: 11.5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+}
+.amz-dir-auto.active {
+  background: rgba(212,160,23,0.25);
+  border-style: solid;
+  color: var(--white);
+}
+
+/* Resultado Amazigh con Tifinagh */
+.amz-result-tifinagh {
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  word-break: break-word;
+  font-family: 'Noto Sans Tifinagh', 'Segoe UI', sans-serif;
+}
+.amz-result-latin {
+  font-size: 18px;
+  color: var(--sand);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.amz-result-arabic {
+  font-family: var(--text-ar);
+  font-size: 22px;
+  direction: rtl;
+  text-align: right;
+  color: var(--sand);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.amz-result-spanish {
+  font-size: 18px;
+  color: var(--white);
+  text-align: left;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.amz-result-detected {
+  display: inline-block;
+  background: rgba(26,122,110,0.25);
+  border: 1px solid rgba(26,122,110,0.5);
+  border-radius: 10px;
+  padding: 3px 9px;
+  font-size: 10.5px;
+  color: var(--sand);
+  margin-bottom: 8px;
+}
+.amz-result-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 8px;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.amz-result-note b { color: var(--gold); font-weight: 500; }
+
+/* Frases Amazigh */
+.amz-phrase-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+.amz-phrase-es {
+  font-size: 13px;
+  color: var(--white);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.amz-phrase-tifinagh {
+  font-size: 22px;
+  color: var(--gold);
+  text-align: center;
+  margin: 4px 0;
+  letter-spacing: 1px;
+  font-family: 'Noto Sans Tifinagh', 'Segoe UI', sans-serif;
+}
+.amz-phrase-latin {
+  font-size: 14px;
+  color: var(--sand);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.amz-phrase-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 8px;
+}
+.amz-phrase-actions button {
+  flex: 1;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  cursor: pointer;
+  font-family: var(--text-es);
+  transition: background 0.15s, color 0.15s;
+}
+.amz-phrase-actions button:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--sand);
+}
+
 </style>
 </head>
 <body>
@@ -496,6 +740,9 @@ body::before {
   <button class="tab-btn" onclick="switchTab('plus')">
     <span class="icon">⭐</span>Plus
   </button>
+  <button class="tab-btn" onclick="switchTab('amazigh')">
+    <span class="icon">ⵣ</span>Amazigh
+  </button>
 </div>
 
 <div class="content">
@@ -526,6 +773,192 @@ body::before {
         <button class="action-btn" onclick="hablar()">🔊 Escuchar</button>
         <button class="action-btn" onclick="compartir()">📤 Compartir</button>
       </div>
+    </div>
+  </div>
+
+  <!-- TAB: FRASES -->
+  <div id="tab-frases" class="tab-panel">
+    <div class="cat-chips" id="cat-chips"></div>
+    <div class="phrase-list" id="phrase-list"></div>
+  </div>
+
+  <!-- TAB: EMERGENCIAS -->
+  <div id="tab-emergencias" class="tab-panel">
+    <div style="background:rgba(192,82,42,0.15);border:1px solid rgba(192,82,42,0.3);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:rgba(255,255,255,0.7)">
+      ⚠️ Toca cualquier frase para copiarla o escucharla
+    </div>
+    <div id="emer-list"></div>
+    <div style="margin-top:1rem;padding:12px;background:rgba(255,255,255,0.04);border-radius:12px;font-size:12px;color:rgba(255,255,255,0.5)">
+      <b style="color:var(--gold)">Teléfonos de emergencia en Marruecos:</b><br>
+      Policía: <b style="color:var(--sand)">19</b> · Urgencias: <b style="color:var(--sand)">15</b> · Bomberos: <b style="color:var(--sand)">15</b>
+    </div>
+  </div>
+
+  <!-- TAB: NÚMEROS -->
+  <div id="tab-numeros" class="tab-panel">
+    <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px">Toca un número para escuchar la pronunciación</div>
+    <div class="num-grid" id="num-grid"></div>
+  </div>
+
+  <!-- TAB: GUÍA -->
+  <div id="tab-guia" class="tab-panel">
+    <div class="guide-section">
+      <h3>💰 Dinero y regateo</h3>
+      <div class="guide-item"><b>Moneda:</b> Dírham marroquí (MAD). 1€ ≈ 10.5 MAD</div>
+      <div class="guide-item"><b>Regateo:</b> Normal en zocos. Empieza ofreciendo el 40-50% del precio pedido</div>
+      <div class="guide-item"><b>Propina:</b> 10% en restaurantes, 5-10 MAD a guías y porteros</div>
+    </div>
+    <div class="guide-section">
+      <h3>🕌 Costumbres</h3>
+      <div class="guide-item"><b>Saludar:</b> "As-salamu alaykum" es muy apreciado por los locales</div>
+      <div class="guide-item"><b>Ropa:</b> Hombros y rodillas cubiertos al visitar mezquitas</div>
+      <div class="guide-item"><b>Ramadán:</b> No comer/beber en público durante el día en este mes</div>
+      <div class="guide-item"><b>Fotos:</b> Pide siempre permiso antes de fotografiar personas</div>
+    </div>
+    <div class="guide-section">
+      <h3>🚕 Transporte en Tánger</h3>
+      <div class="guide-item"><b>Taxi petit (rojo):</b> Urbano, compartido, tarifas fijas. Negocia antes de subir</div>
+      <div class="guide-item"><b>Taxi grand (azul):</b> Interurbano. Tarifa oficial, pide que pongan el taxímetro</div>
+    </div>
+    <div class="guide-section">
+      <h3>🍽️ Comida típica</h3>
+      <div class="guide-item"><b>Tajín:</b> Guiso tradicional de carne/verduras en cazuela de barro</div>
+      <div class="guide-item"><b>Couscous:</b> Viernes es el día tradicional, pruébalo en casa local</div>
+      <div class="guide-item"><b>Atay:</b> Té de menta con azúcar. Rechazarlo es una falta de respeto</div>
+      <div class="guide-item"><b>Msemen:</b> Crepes marroquíes para desayuno, deliciosos con miel</div>
+    </div>
+    <div class="guide-section">
+      <h3>🏛️ Tánger imprescindible</h3>
+      <div class="guide-item"><b>Medina:</b> Barrio antiguo, pasea sin prisa por sus callejuelas</div>
+      <div class="guide-item"><b>Zoco Chico:</b> La plaza central, perfecta para tomar té y observar</div>
+      <div class="guide-item"><b>Cap Spartel:</b> Donde se unen el Atlántico y el Mediterráneo</div>
+      <div class="guide-item"><b>Cuevas de Hércules:</b> A 14 km, impresionantes cuevas naturales</div>
+    </div>
+  </div>
+
+  <!-- TAB: PLUS -->
+  <div id="tab-plus" class="tab-panel">
+    <div style="text-align:center;padding:8px 0 14px">
+      <div style="font-size:28px">⭐</div>
+      <div style="font-size:15px;font-weight:500;color:var(--sand)">Traductor Plus de Rafa</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px">Traducciones largas · Texto completo · Sin límite</div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.25rem;margin-bottom:1rem">
+      <div class="lang-toggle" style="margin-bottom:12px">
+        <button class="lang-btn active" id="plus-lang-es" onclick="setPlusLang('es')">🇪🇸 Español → Árabe</button>
+        <button class="lang-btn" id="plus-lang-ar" onclick="setPlusLang('ar')">🇲🇦 Árabe → Español</button>
+      </div>
+      <textarea class="input-area" id="plus-input" placeholder="Escribe aquí el texto completo..." rows="5" style="min-height:120px"></textarea>
+      <button class="translate-btn" id="plus-btn" onclick="traducirPlus()" style="margin-top:10px">
+        Traducir texto completo
+      </button>
+    </div>
+
+    <div id="plus-result-card" style="display:none;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.25rem">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.4);margin-bottom:10px">Resultado</div>
+      <div id="plus-result-text" style="font-size:15px;color:var(--sand);line-height:1.8;white-space:pre-wrap"></div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="action-btn" onclick="copiarPlus()">📋 Copiar</button>
+        <button class="action-btn" onclick="compartirPlus()">📤 Compartir</button>
+        <button class="action-btn" onclick="limpiarPlus()">🗑️ Limpiar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TAB: AMAZIGH (Bereber) -->
+  <div id="tab-amazigh" class="tab-panel">
+
+    <div class="amz-header">
+      <div class="amz-icon">ⵜⴰⵎⴰⵣⵉⵖⵜ</div>
+      <div class="amz-title">Traductor Amazigh / Bereber</div>
+      <div class="amz-sub">Tarifit · Tamazight · Tachelhit · Marruecos del Norte</div>
+    </div>
+
+    <div class="amz-warn">
+      <span class="amz-warn-ico">⚠️</span>
+      <div>
+        <b>Aviso de limitaciones:</b> Las traducciones Amazigh son generadas por IA y pueden contener errores.
+        Estas lenguas tienen muy poco soporte en tecnología y pocos recursos digitales.
+        Úsalo como referencia, no como fuente única. Para conversaciones importantes consulta a un hablante nativo.
+      </div>
+    </div>
+
+    <div class="mic-section">
+
+      <div class="amz-block-label">Variante Amazigh</div>
+      <div class="amz-variant-row">
+        <button class="amz-variant-btn active" data-variant="tarifit" onclick="setAmzVariant('tarifit')">
+          <span class="amz-vname">Tarifit</span>
+          <span class="amz-vnative">تاريفيت</span>
+          <span style="opacity:0.5;font-size:9.5px">Rif · Norte</span>
+        </button>
+        <button class="amz-variant-btn" data-variant="tamazight" onclick="setAmzVariant('tamazight')">
+          <span class="amz-vname">Tamazight</span>
+          <span class="amz-vnative">ⵜⴰⵎⴰⵣⵉⵖⵜ</span>
+          <span style="opacity:0.5;font-size:9.5px">Central · Atlas</span>
+        </button>
+        <button class="amz-variant-btn" data-variant="tachelhit" onclick="setAmzVariant('tachelhit')">
+          <span class="amz-vname">Tachelhit</span>
+          <span class="amz-vnative">ⵜⴰⵛⵍⵃⵉⵜ</span>
+          <span style="opacity:0.5;font-size:9.5px">Shilha · Sur</span>
+        </button>
+      </div>
+
+      <div class="amz-block-label">Dirección de traducción</div>
+      <div class="amz-dir-row">
+        <button class="amz-dir-btn active" data-dir="es-amz" onclick="setAmzDir('es-amz')">🇪🇸 → ⵣ Amazigh</button>
+        <button class="amz-dir-btn" data-dir="amz-es" onclick="setAmzDir('amz-es')">ⵣ Amazigh → 🇪🇸</button>
+        <button class="amz-dir-btn" data-dir="ar-amz" onclick="setAmzDir('ar-amz')">🇲🇦 العربية → ⵣ</button>
+        <button class="amz-dir-btn" data-dir="amz-ar" onclick="setAmzDir('amz-ar')">ⵣ Amazigh → 🇲🇦</button>
+      </div>
+      <button class="amz-dir-auto" id="amz-auto-btn" onclick="toggleAmzAuto()">
+        🔍 Auto-detectar idioma de entrada
+      </button>
+
+      <button class="mic-btn" id="amz-mic-btn" onclick="toggleAmzMic()" title="Pulsa para hablar" style="margin-top:4px">
+        🎤
+      </button>
+      <div class="mic-hint" id="amz-mic-hint">Pulsa el micrófono o escribe abajo</div>
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:8px">
+        El reconocimiento de voz no soporta Amazigh directamente — usa español o árabe
+      </div>
+
+      <textarea class="input-area" id="amz-input" placeholder="Escribe en español, árabe o amazigh..." rows="2"></textarea>
+      <button class="translate-btn" id="amz-btn-traducir" onclick="traducirAmazigh()">Traducir a Amazigh</button>
+    </div>
+
+    <div class="result-card" id="amz-result-card">
+      <div id="amz-detected-wrap" style="display:none">
+        <span class="amz-result-detected" id="amz-detected-label"></span>
+      </div>
+      <div class="amz-result-tifinagh" id="amz-result-tifinagh"></div>
+      <div class="amz-result-latin" id="amz-result-latin"></div>
+      <div class="amz-result-arabic" id="amz-result-arabic" style="display:none"></div>
+      <div class="amz-result-spanish" id="amz-result-spanish" style="display:none"></div>
+      <div class="amz-result-note" id="amz-result-note" style="display:none"></div>
+      <div class="result-actions">
+        <button class="action-btn" onclick="copiarAmz()">📋 Copiar</button>
+        <button class="action-btn" onclick="hablarAmz()">🔊 Escuchar</button>
+        <button class="action-btn" onclick="compartirAmz()">📤 Compartir</button>
+      </div>
+    </div>
+
+    <!-- Frases comunes Amazigh -->
+    <div style="margin-top:1.5rem">
+      <div class="amz-block-label">Frases comunes en Amazigh</div>
+      <div class="cat-chips" id="amz-cat-chips"></div>
+      <div id="amz-phrase-list"></div>
+    </div>
+
+    <div style="margin-top:1rem;padding:11px;background:rgba(255,255,255,0.04);border-radius:12px;font-size:11.5px;color:rgba(255,255,255,0.55);line-height:1.5">
+      <b style="color:var(--gold)">ℹ️ Sobre el Amazigh:</b>
+      Lengua oficial de Marruecos junto al árabe.
+      <b style="color:var(--sand)">Tarifit</b> se habla en el Rif (norte, alrededor de Alhucemas y Nador).
+      <b style="color:var(--sand)">Tamazight Central</b> en el Atlas Medio.
+      <b style="color:var(--sand)">Tachelhit</b> en el Souss y Anti-Atlas.
+      Se escribe con el alfabeto <b style="color:var(--gold)">Tifinagh (ⵜⵉⴼⵉⵏⴰⵖ)</b>, milenario y oficial.
     </div>
   </div>
 
@@ -689,7 +1122,7 @@ function switchTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  const idx = ['traductor','frases','emergencias','numeros','guia','plus'].indexOf(name);
+  const idx = ['traductor','frases','emergencias','numeros','guia','plus','amazigh'].indexOf(name);
   document.querySelectorAll('.tab-btn')[idx].classList.add('active');
 }
 
@@ -1076,9 +1509,690 @@ function showToast(msg) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────
+
+// Datos de las variantes Amazigh
+const AMZ_VARIANTS = {
+  tarifit:   { name: 'Tarifit',          native: 'تاريفيت / ⵜⴰⵔⵉⴼⵉⵜ', region: 'Rif (norte de Marruecos: Alhucemas, Nador, Tánger-Tetuán)', notes: 'Variante del norte, fuerte influencia árabe y española. Usa principalmente alfabeto latino o árabe en uso cotidiano, y Tifinagh en uso oficial.' },
+  tamazight: { name: 'Tamazight Central', native: 'ⵜⴰⵎⴰⵣⵉⵖⵜ',           region: 'Atlas Medio (Khenifra, Beni Mellal, Azrou)', notes: 'Variante estándar de referencia oficial en Marruecos. Se enseña en escuelas con alfabeto Tifinagh.' },
+  tachelhit: { name: 'Tachelhit (Shilha)', native: 'ⵜⴰⵛⵍⵃⵉⵜ',             region: 'Souss y Anti-Atlas (Agadir, Tiznit, Taroudant)', notes: 'Variante del sur, hablada por más de 4 millones. Tradición literaria escrita centenaria.' }
+};
+
+// Frases comunes en Amazigh (todas las variantes principales)
+// Formato: { cat, es, ar (opcional), variantes: { tarifit:{tif,lat}, tamazight:{tif,lat}, tachelhit:{tif,lat} } }
+const AMZ_FRASES = [
+  // SALUDOS
+  { cat:'Saludos', es:'Hola / Paz contigo', variantes:{
+      tarifit:   { tif:'ⴰⵣⵓⵍ',     lat:'Azul' },
+      tamazight: { tif:'ⴰⵣⵓⵍ ⴼⵍⵍⴰⵡⵏ', lat:'Azul fellawen' },
+      tachelhit: { tif:'ⴰⵣⵓⵍ',     lat:'Azul' }
+  }},
+  { cat:'Saludos', es:'Buenos días', variantes:{
+      tarifit:   { tif:'ⵚⴱⴰⵃ ⵍⵅⵉⵔ',  lat:'Sbah lkhir' },
+      tamazight: { tif:'ⵜⵉⴼⴰⵡⵜ',     lat:'Tifawt' },
+      tachelhit: { tif:'ⵜⵉⴼⴰⵡⵜ',     lat:'Tifawt' }
+  }},
+  { cat:'Saludos', es:'Buenas tardes/noches', variantes:{
+      tarifit:   { tif:'ⵎⵙⴰ ⵍⵅⵉⵔ',  lat:'Msa lkhir' },
+      tamazight: { tif:'ⵜⴰⴷⴳⴳⵯⴰⵜ ⵉⵅⴼⵏ', lat:'Tadeggwat ikhfen' },
+      tachelhit: { tif:'ⵜⵉⵎⵏⵙⵉⵡⵜ',  lat:'Timensiwt' }
+  }},
+  { cat:'Saludos', es:'¿Cómo estás?', variantes:{
+      tarifit:   { tif:'ⵎⴰⵎⵎⵛ ⵜⵍⵉⴷ?', lat:'Mammec tlid?' },
+      tamazight: { tif:'ⵎⴰⵏⵉⴽ ⴰⵏⵜⴳⵉⴷ?', lat:'Manik antgid?' },
+      tachelhit: { tif:'ⵎⴰⵏⵉⴽ ⴰ ⵜⴳⵉⵜ?', lat:'Manik a tgit?' }
+  }},
+  { cat:'Saludos', es:'Bien, gracias a Dios', variantes:{
+      tarifit:   { tif:'ⵍⴰ ⴱⴰⵙ, ⵍⵃⵎⴷⵓ ⵍⵍⴰⵀ', lat:'La bas, l-hamdulillah' },
+      tamazight: { tif:'ⵍⵍⴰⵏⵉⵖ ⵉⵃⵍⴰ',         lat:'Llanigh ihla' },
+      tachelhit: { tif:'ⵍⴰ ⴱⴰⵙ, ⵍⵃⴰⵎⴷ ⵉ ⵕⴱⴱⵉ', lat:'La bas, l-hamd i Rebbi' }
+  }},
+  { cat:'Saludos', es:'Hasta luego / Adiós', variantes:{
+      tarifit:   { tif:'ⴰⵔ ⵜⵓⴼⴰⵜ',    lat:'Ar tufat' },
+      tamazight: { tif:'ⴰⵔ ⵜⵉⴽⴽⵍⵜ ⵏⵏⴽ', lat:'Ar tikkelt nnek' },
+      tachelhit: { tif:'ⴰⴷ ⴰⴽ ⵉⵏⵉⵏ ⵕⴱⴱⵉ', lat:'Ad ak inin Rebbi' }
+  }},
+  { cat:'Saludos', es:'Bienvenido/a', variantes:{
+      tarifit:   { tif:'ⵎⵔⵃⴱⴰ',      lat:'Merhba' },
+      tamazight: { tif:'ⴰⵏⵙⵓⴼ ⵙ ⵡⴰⴷⴷⴰⵢ', lat:'Ansuf s waddai' },
+      tachelhit: { tif:'ⴱⵉⵙⵎⵉⵍⵍⴰⵀ',  lat:'Bismillah / Mreḥba' }
+  }},
+
+  // BÁSICO
+  { cat:'Básico', es:'Sí', variantes:{
+      tarifit:   { tif:'ⵉⵀ',  lat:'Ih / Wah' },
+      tamazight: { tif:'ⵢⴰⵀ', lat:'Yah' },
+      tachelhit: { tif:'ⵢⴰⵀ', lat:'Yah / Wah' }
+  }},
+  { cat:'Básico', es:'No', variantes:{
+      tarifit:   { tif:'ⵍⵍⴰ', lat:'Lla' },
+      tamazight: { tif:'ⵓⵀⵓ', lat:'Uhu' },
+      tachelhit: { tif:'ⵓⵀⵓ', lat:'Uhu' }
+  }},
+  { cat:'Básico', es:'Por favor', variantes:{
+      tarifit:   { tif:'ⵄⴰⴼⴰⴽ',         lat:'3afak' },
+      tamazight: { tif:'ⴰⴽⴽⵉⵏⵉ',         lat:'Akkini' },
+      tachelhit: { tif:'ⵙ ⵎⵉⵏⵏⴰⴽ',       lat:'S minnak' }
+  }},
+  { cat:'Básico', es:'Gracias', variantes:{
+      tarifit:   { tif:'ⵜⴰⵏⵎⵎⵉⵔⵜ',   lat:'Tanmmirt' },
+      tamazight: { tif:'ⵜⴰⵏⵎⵎⵉⵔⵜ',   lat:'Tanmmirt' },
+      tachelhit: { tif:'ⵜⴰⵏⵎⵎⵉⵔⵜ',   lat:'Tanmmirt' }
+  }},
+  { cat:'Básico', es:'De nada', variantes:{
+      tarifit:   { tif:'ⵓⵍⴰ ⵛⴰ',     lat:'Ula sha' },
+      tamazight: { tif:'ⵓⵔ ⵉⵍⵍⵉ ⵓⵎⵢⴰ', lat:'Ur illi umya' },
+      tachelhit: { tif:'ⵓⵍⴰ ⵎⴰⴷ',    lat:'Ula mad' }
+  }},
+  { cat:'Básico', es:'Perdón / Lo siento', variantes:{
+      tarifit:   { tif:'ⵙⵎⵃ ⴰⵢⵉ',     lat:'Smeh ayi' },
+      tamazight: { tif:'ⵙⵓⵔⴼ ⵉⵢⵉ',    lat:'Surf iyi' },
+      tachelhit: { tif:'ⵙⵓⵔⴼ ⵉⵢⵉ',    lat:'Surf iyi' }
+  }},
+  { cat:'Básico', es:'No entiendo', variantes:{
+      tarifit:   { tif:'ⵓⵔ ⴼⵀⵉⵎⵖ',  lat:'Ur fhimegh' },
+      tamazight: { tif:'ⵓⵔ ⴼⵀⵉⵎⵖ',  lat:'Ur fhimegh' },
+      tachelhit: { tif:'ⵓⵔ ⴼⵀⵉⵎⵖ',  lat:'Ur fhimegh' }
+  }},
+  { cat:'Básico', es:'¿Hablas español?', variantes:{
+      tarifit:   { tif:'ⵜⵙⵙⵏⴷ ⵙⴱⴰⵏⵢⵓⵍ?', lat:'Tessend Spanyul?' },
+      tamazight: { tif:'ⵉⵙ ⵜⵙⵙⵏⵜ ⵜⴰⵙⴱⴰⵏⵢⵓⵍⵉⵜ?', lat:'Is tessent taspanyulit?' },
+      tachelhit: { tif:'ⵉⵙ ⵜⵙⵙⵏⵜ ⵜⴰⵙⴱⴰⵏⵢⵓⵍⵉⵜ?', lat:'Is tessent taspanyulit?' }
+  }},
+  { cat:'Básico', es:'Me llamo...', variantes:{
+      tarifit:   { tif:'ⵉⵙⵎ ⵉⵏⵓ...',    lat:'Ism inu...' },
+      tamazight: { tif:'ⵉⵙⵎ ⵉⵏⵓ...',    lat:'Ism inu...' },
+      tachelhit: { tif:'ⵉⵙⵎ ⵉⵏⵓ...',    lat:'Ism inu...' }
+  }},
+
+  // COMPRAS
+  { cat:'Compras', es:'¿Cuánto cuesta?', variantes:{
+      tarifit:   { tif:'ⵎⵏⵛⴽ ⵉⵙⵡⴰ?',     lat:'Mneck iswa?' },
+      tamazight: { tif:'ⵎⵏⵛⴽ ⴰⵢⴷ ⵉⵙⵡⴰ?', lat:'Mneck ayd iswa?' },
+      tachelhit: { tif:'ⵎⵏⵛⴽ ⴰⵢⴷ ⵉⵙⵡⴰ?', lat:'Mneck ayd iswa?' }
+  }},
+  { cat:'Compras', es:'Es muy caro', variantes:{
+      tarifit:   { tif:'ⵉⵖⵍⴰ ⴱⵣⵣⴰⴼ',  lat:'Ighla bzzaf' },
+      tamazight: { tif:'ⵉⵖⵍⴰ ⴱⴰⵀⵔⴰ',  lat:'Ighla bahra' },
+      tachelhit: { tif:'ⵉⵖⵍⴰ ⴱⴰⵀⵔⴰ',  lat:'Ighla bahra' }
+  }},
+  { cat:'Compras', es:'¿Puede bajar el precio?', variantes:{
+      tarifit:   { tif:'ⵜⵣⵎⵎⴰⵔⴷ ⴰⵜⵏⵇⵚⴷ?', lat:'Tzemmared at neqsed?' },
+      tamazight: { tif:'ⵉⵙ ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵙⵏⵇⵚⴷ?', lat:'Is tzmred ad tesneqsed?' },
+      tachelhit: { tif:'ⵉⵙ ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵙⵏⵇⵚⴷ?', lat:'Is tzmred ad tesneqsed?' }
+  }},
+  { cat:'Compras', es:'Me lo llevo', variantes:{
+      tarifit:   { tif:'ⴰⴷ ⵜ ⴰⴷⵎⵖ',  lat:'Ad t admgh' },
+      tamazight: { tif:'ⴰⴷ ⵜ ⴰⵎⵣⵖ',  lat:'Ad t amzegh' },
+      tachelhit: { tif:'ⴰⴷ ⵜ ⴰⵎⵣⵖ',  lat:'Ad t amzegh' }
+  }},
+  { cat:'Compras', es:'Solo estoy mirando', variantes:{
+      tarifit:   { tif:'ⵖⴰⵔ ⴽⴰⵏⵥⵕ',     lat:'Ghar kanzer' },
+      tamazight: { tif:'ⵖⴰⵙ ⴰⵔ ⵙⵎⴰⵇⵇⵓⵍⵖ', lat:'Ghas ar smaqqulgh' },
+      tachelhit: { tif:'ⵖⴰⵙ ⴰⵔ ⵙⵎⴰⵇⵇⵓⵍⵖ', lat:'Ghas ar smaqqulgh' }
+  }},
+
+  // RESTAURANTE
+  { cat:'Restaurante', es:'Tengo hambre', variantes:{
+      tarifit:   { tif:'ⵍⵍⵓⵥⵖ',  lat:'Lluzegh' },
+      tamazight: { tif:'ⵍⵍⵓⵥⵖ',  lat:'Lluzegh' },
+      tachelhit: { tif:'ⵍⵍⵓⵥⵖ',  lat:'Lluzegh' }
+  }},
+  { cat:'Restaurante', es:'Tengo sed', variantes:{
+      tarifit:   { tif:'ⴼⴼⵓⴷⵖ',  lat:'Ffudegh' },
+      tamazight: { tif:'ⴼⴼⵓⴷⵖ',  lat:'Ffudegh' },
+      tachelhit: { tif:'ⴼⴼⵓⴷⵖ',  lat:'Ffudegh' }
+  }},
+  { cat:'Restaurante', es:'¡Está delicioso!', variantes:{
+      tarifit:   { tif:'ⴱⵏⵉⵏ ⴱⵣⵣⴰⴼ!', lat:'Bnin bzzaf!' },
+      tamazight: { tif:'ⵉⴷⵍⴰ ⴱⴰⵀⵔⴰ!',  lat:'Idla bahra!' },
+      tachelhit: { tif:'ⵉⵎⵉⵎ ⴱⴰⵀⵔⴰ!',  lat:'Imim bahra!' }
+  }},
+  { cat:'Restaurante', es:'Agua, por favor', variantes:{
+      tarifit:   { tif:'ⴰⵎⴰⵏ ⵄⴰⴼⴰⴽ',  lat:'Aman 3afak' },
+      tamazight: { tif:'ⴰⵎⴰⵏ ⴰⴽⴽⵉⵏⵉ',  lat:'Aman akkini' },
+      tachelhit: { tif:'ⴰⵎⴰⵏ ⵙ ⵎⵉⵏⵏⴰⴽ', lat:'Aman s minnak' }
+  }},
+  { cat:'Restaurante', es:'La cuenta, por favor', variantes:{
+      tarifit:   { tif:'ⵍⵃⵙⴰⴱ ⵄⴰⴼⴰⴽ', lat:'L-hsab 3afak' },
+      tamazight: { tif:'ⵍⵃⵙⴰⴱ ⴰⴽⴽⵉⵏⵉ', lat:'L-hsab akkini' },
+      tachelhit: { tif:'ⵍⵃⵙⴰⴱ ⵙ ⵎⵉⵏⵏⴰⴽ', lat:'L-hsab s minnak' }
+  }},
+
+  // VIAJE / TRANSPORTE
+  { cat:'Viaje', es:'¿Dónde está...?', variantes:{
+      tarifit:   { tif:'ⵎⴰⵏⵉ ⵉⵍⵍⴰ...?', lat:'Mani illa...?' },
+      tamazight: { tif:'ⵎⴰⵏⵉ ⵉⵍⵍⴰ...?', lat:'Mani illa...?' },
+      tachelhit: { tif:'ⵎⴰⵏⵉ ⵉⵍⵍⴰ...?', lat:'Mani illa...?' }
+  }},
+  { cat:'Viaje', es:'Llévame al hotel', variantes:{
+      tarifit:   { tif:'ⴰⵡⵉⵢⵉ ⵖⵔ ⵍⵓⵟⵉⵍ',  lat:'Awiyi ghar lutil' },
+      tamazight: { tif:'ⴰⵡⵉ ⵉⵢⵉ ⵙ ⵍⵓⵟⵉⵍ',  lat:'Awi iyi s lutil' },
+      tachelhit: { tif:'ⴰⵡⵉ ⵉⵢⵉ ⵙ ⵍⵓⵟⵉⵍ',  lat:'Awi iyi s lutil' }
+  }},
+  { cat:'Viaje', es:'¿Está lejos?', variantes:{
+      tarifit:   { tif:'ⵉⴳⴳⵓⴳ?',     lat:'Iggug?' },
+      tamazight: { tif:'ⵉⵙ ⵉⴳⴳⵓⴳ?',  lat:'Is iggug?' },
+      tachelhit: { tif:'ⵉⵙ ⵉⴳⴳⵓⴳ?',  lat:'Is iggug?' }
+  }},
+
+  // EMERGENCIA
+  { cat:'Emergencia', es:'¡Ayuda!', variantes:{
+      tarifit:   { tif:'ⵄⴰⵡⵏ ⴰⵢⵉ!', lat:'3awn ayi!' },
+      tamazight: { tif:'ⴰⵡⵉ ⵉⵢⵉ!',  lat:'Awi iyi!' },
+      tachelhit: { tif:'ⵄⴰⵡⵏ ⵉⵢⵉ!', lat:'3awn iyi!' }
+  }},
+  { cat:'Emergencia', es:'Estoy enfermo/a', variantes:{
+      tarifit:   { tif:'ⵎⵃⴹⵕⵖ',    lat:'Mhdregh' },
+      tamazight: { tif:'ⴰⴷⵉ ⵉⵎⵎⵓⵜⵏ', lat:'Adi immuten' },
+      tachelhit: { tif:'ⵏⴹⴰⵅ',     lat:'Ndakh' }
+  }},
+  { cat:'Emergencia', es:'Necesito un médico', variantes:{
+      tarifit:   { tif:'ⵃⵜⴰⵊⵖ ⴰⵟⴱⵉⴱ',  lat:'Htajegh atbib' },
+      tamazight: { tif:'ⵉⵃⵜⵜⴰⵊⵖ ⵓⵎⵙⵉⵍⵍⵉ', lat:'Ihettajgh umsilli' },
+      tachelhit: { tif:'ⵙⵔⵉⵖ ⵉ ⵓⴹⴱⵉⴱ',  lat:'Srigh i udhbib' }
+  }}
+];
+
+// Estado del módulo Amazigh
+let amzVariant = 'tarifit';
+let amzDir = 'es-amz';     // es-amz | amz-es | ar-amz | amz-ar
+let amzAuto = false;
+let amzCurrentCat = 'Saludos';
+let amzIsRecording = false;
+let amzRecognition = null;
+let amzLastResult = null;
+
+// ─── Selectores de variante / dirección / auto ───
+function setAmzVariant(v) {
+  amzVariant = v;
+  document.querySelectorAll('.amz-variant-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.variant === v);
+  });
+  // Re-render de las frases con la nueva variante
+  renderAmzFrases();
+}
+
+function setAmzDir(d) {
+  amzDir = d;
+  amzAuto = false;
+  document.getElementById('amz-auto-btn').classList.remove('active');
+  document.querySelectorAll('.amz-dir-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.dir === d);
+  });
+  updateAmzInputAndButton();
+  document.getElementById('amz-result-card').classList.remove('visible');
+}
+
+function toggleAmzAuto() {
+  amzAuto = !amzAuto;
+  const btn = document.getElementById('amz-auto-btn');
+  btn.classList.toggle('active', amzAuto);
+  if (amzAuto) {
+    btn.innerHTML = '✓ Auto-detectar idioma de entrada (activo)';
+    document.querySelectorAll('.amz-dir-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('amz-input').dir = 'auto';
+    document.getElementById('amz-input').placeholder = '🔍 Auto-detectar — escribe en español, árabe o amazigh...';
+    document.getElementById('amz-btn-traducir').textContent = 'Detectar y traducir';
+  } else {
+    btn.innerHTML = '🔍 Auto-detectar idioma de entrada';
+    setAmzDir(amzDir);
+  }
+}
+
+function updateAmzInputAndButton() {
+  const ta = document.getElementById('amz-input');
+  const btn = document.getElementById('amz-btn-traducir');
+  const variantName = AMZ_VARIANTS[amzVariant].name;
+  switch (amzDir) {
+    case 'es-amz':
+      ta.dir = 'ltr';
+      ta.placeholder = 'Escribe en español...';
+      btn.textContent = `Traducir a ${variantName}`;
+      break;
+    case 'amz-es':
+      ta.dir = 'ltr';
+      ta.placeholder = `Escribe en ${variantName} (Tifinagh o latino)...`;
+      btn.textContent = 'Traducir al español';
+      break;
+    case 'ar-amz':
+      ta.dir = 'rtl';
+      ta.placeholder = 'اكتب بالعربية...';
+      btn.textContent = `Traducir a ${variantName}`;
+      break;
+    case 'amz-ar':
+      ta.dir = 'ltr';
+      ta.placeholder = `Escribe en ${variantName}...`;
+      btn.textContent = 'Traducir al árabe';
+      break;
+  }
+}
+
+// ─── Detección heurística de idioma ───
+function detectarIdiomaHeuristico(txt) {
+  // Detección rápida en cliente como hint (la IA confirma)
+  // Tifinagh: bloque Unicode U+2D30–U+2D7F
+  if (/[\u2D30-\u2D7F]/.test(txt)) return 'amazigh';
+  // Árabe: bloque U+0600–U+06FF
+  const arabicCount = (txt.match(/[\u0600-\u06FF]/g) || []).length;
+  const latinCount  = (txt.match(/[A-Za-zÀ-ÿ]/g)    || []).length;
+  if (arabicCount > latinCount && arabicCount > 0) return 'arabe';
+  if (latinCount > 0) return 'espanol_o_amazigh_latino';
+  return 'desconocido';
+}
+
+// ─── Construcción de prompts para Claude ───
+function buildAmzPrompt(txt) {
+  const v = AMZ_VARIANTS[amzVariant];
+  const variantInfo = `${v.name} (${v.native}) — variante hablada en ${v.region}`;
+  const culturalContext = `Contexto cultural: norte de Marruecos (Tánger, Tetuán, Rif), donde el amazigh convive con el árabe marroquí (dārija) y el español. Las traducciones deben ser naturales y culturalmente apropiadas, no literales. ${v.notes}`;
+
+  if (amzAuto) {
+    return `Eres un experto lingüista en lenguas Amazigh/Bereber del norte de Marruecos.
+
+Tu tarea: AUTO-DETECTAR el idioma del texto del usuario (puede ser ESPAÑOL, ÁRABE MARROQUÍ/DĀRIJA, o AMAZIGH en cualquier alfabeto Tifinagh/latino/árabe) y traducirlo a la variante Amazigh seleccionada Y/O al español según corresponda.
+
+Variante Amazigh objetivo: ${variantInfo}
+${culturalContext}
+
+Texto del usuario: """${txt}"""
+
+REGLAS DE RESPUESTA:
+1. Detecta primero el idioma del texto.
+2. Si es ESPAÑOL → tradúcelo a ${v.name} en escritura Tifinagh y latina.
+3. Si es ÁRABE → tradúcelo a ${v.name} en escritura Tifinagh y latina, e incluye también el español.
+4. Si es AMAZIGH → tradúcelo al ESPAÑOL natural, y opcionalmente al árabe marroquí.
+5. La transcripción latina debe ser fácil de leer para hispanohablantes (usa "kh" para خ, "gh" para غ, "3" para ع cuando aplique).
+
+Responde SOLO con JSON válido (sin backticks, sin texto adicional):
+{
+  "detectado": "espanol|arabe|amazigh",
+  "tifinagh": "[texto en alfabeto Tifinagh si aplica, o vacío]",
+  "latino": "[transcripción Amazigh en alfabeto latino si aplica, o vacío]",
+  "arabe": "[texto en árabe si aplica, o vacío]",
+  "espanol": "[texto en español si aplica, o vacío]",
+  "nota": "[breve nota cultural o lingüística, máx 15 palabras, o vacío]"
+}`;
+  }
+
+  // Direcciones explícitas
+  if (amzDir === 'es-amz') {
+    return `Eres un experto lingüista en Amazigh/Bereber del norte de Marruecos.
+
+Variante objetivo: ${variantInfo}
+${culturalContext}
+
+Traduce el siguiente texto del ESPAÑOL al ${v.name}.
+Proporciona escritura Tifinagh (ⵜⵉⴼⵉⵏⴰⵖ) y transcripción latina fácil de leer para hispanohablantes (usa "kh" para خ, "gh" para غ, "3" para ع cuando aplique).
+
+Texto en español: """${txt}"""
+
+Responde SOLO con JSON válido (sin backticks):
+{
+  "tifinagh": "[traducción en alfabeto Tifinagh]",
+  "latino": "[transcripción latina pronunciable por hispanohablantes]",
+  "nota": "[contexto cultural breve si aplica, máx 15 palabras, o vacío]"
+}`;
+  }
+
+  if (amzDir === 'amz-es') {
+    return `Eres un experto lingüista en Amazigh/Bereber del norte de Marruecos.
+
+Variante de origen: ${variantInfo}
+${culturalContext}
+
+Traduce el siguiente texto en ${v.name} (puede venir en alfabeto Tifinagh, latino o árabe) al ESPAÑOL natural y fluido.
+
+Texto en ${v.name}: """${txt}"""
+
+Responde SOLO con JSON válido (sin backticks):
+{
+  "espanol": "[traducción al español]",
+  "tifinagh": "[el texto original normalizado en Tifinagh, o vacío si no aplica]",
+  "latino": "[transcripción latina del original, o vacío]",
+  "nota": "[contexto cultural o aclaración, máx 15 palabras, o vacío]"
+}`;
+  }
+
+  if (amzDir === 'ar-amz') {
+    return `Eres un experto lingüista en lenguas del norte de Marruecos: árabe marroquí (dārija) y Amazigh/Bereber.
+
+Variante Amazigh objetivo: ${variantInfo}
+${culturalContext}
+
+Traduce el siguiente texto del ÁRABE MARROQUÍ (dārija) al ${v.name}.
+Proporciona escritura Tifinagh y transcripción latina pronunciable para hispanohablantes.
+Incluye también la traducción al español como referencia.
+
+Texto en árabe: """${txt}"""
+
+Responde SOLO con JSON válido (sin backticks):
+{
+  "tifinagh": "[traducción en alfabeto Tifinagh]",
+  "latino": "[transcripción latina]",
+  "espanol": "[traducción al español como referencia]",
+  "nota": "[breve nota cultural si aplica, máx 15 palabras, o vacío]"
+}`;
+  }
+
+  if (amzDir === 'amz-ar') {
+    return `Eres un experto lingüista en lenguas del norte de Marruecos: Amazigh/Bereber y árabe marroquí (dārija).
+
+Variante de origen: ${variantInfo}
+${culturalContext}
+
+Traduce el siguiente texto en ${v.name} al ÁRABE MARROQUÍ (dārija) coloquial real.
+Incluye también una breve traducción al español de referencia.
+
+Texto en ${v.name}: """${txt}"""
+
+Responde SOLO con JSON válido (sin backticks):
+{
+  "arabe": "[traducción en escritura árabe / dārija]",
+  "espanol": "[traducción al español como referencia]",
+  "nota": "[breve nota cultural si aplica, máx 15 palabras, o vacío]"
+}`;
+  }
+}
+
+// ─── Llamada a Claude (mismo Worker que el resto) ───
+async function traducirAmazigh() {
+  const txt = document.getElementById('amz-input').value.trim();
+  if (!txt) { showToast('Escribe algo primero'); return; }
+
+  const btn = document.getElementById('amz-btn-traducir');
+  const oldText = btn.textContent;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Traduciendo...';
+  document.getElementById('amz-result-card').classList.remove('visible');
+
+  // Hint de detección (no bloqueante)
+  const hint = detectarIdiomaHeuristico(txt);
+  const prompt = buildAmzPrompt(txt);
+
+  try {
+    const resp = await fetch("https://orange-boat-6d42.pedrosaborrego.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 600,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await resp.json();
+    const raw = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    let parsed;
+    try {
+      parsed = JSON.parse(clean);
+    } catch(parseErr) {
+      // Intentar extraer JSON del bloque
+      const jsonMatch = clean.match(/\{[\s\S]*\}/);
+      if (jsonMatch) parsed = JSON.parse(jsonMatch[0]);
+      else throw new Error('Respuesta no es JSON válido');
+    }
+
+    amzLastResult = parsed;
+    renderAmzResult(parsed, hint);
+    showToast('✓ Traducción Amazigh lista');
+  } catch(e) {
+    console.error('Error traducción Amazigh:', e);
+    showToast('⚠️ Error: ' + (e.message || 'Sin conexión'));
+  }
+  btn.disabled = false;
+  btn.textContent = oldText;
+}
+
+function renderAmzResult(p, hint) {
+  const card    = document.getElementById('amz-result-card');
+  const tifEl   = document.getElementById('amz-result-tifinagh');
+  const latEl   = document.getElementById('amz-result-latin');
+  const arEl    = document.getElementById('amz-result-arabic');
+  const esEl    = document.getElementById('amz-result-spanish');
+  const noEl    = document.getElementById('amz-result-note');
+  const detWrap = document.getElementById('amz-detected-wrap');
+  const detLab  = document.getElementById('amz-detected-label');
+
+  // Reset
+  tifEl.textContent = '';
+  latEl.textContent = '';
+  arEl.textContent  = '';
+  esEl.textContent  = '';
+  noEl.textContent  = '';
+  arEl.style.display = 'none';
+  esEl.style.display = 'none';
+  noEl.style.display = 'none';
+  detWrap.style.display = 'none';
+
+  // Etiqueta de detección
+  if (amzAuto && p.detectado) {
+    const map = { espanol:'🇪🇸 Detectado: Español', arabe:'🇲🇦 Detectado: Árabe', amazigh:'ⵣ Detectado: Amazigh' };
+    detLab.textContent = map[p.detectado] || ('Detectado: ' + p.detectado);
+    detWrap.style.display = 'block';
+  }
+
+  // Tifinagh
+  if (p.tifinagh && p.tifinagh.trim()) {
+    tifEl.textContent = p.tifinagh.trim();
+  }
+  // Latino
+  if (p.latino && p.latino.trim()) {
+    latEl.textContent = '🔤 ' + p.latino.trim();
+  }
+  // Árabe
+  if (p.arabe && p.arabe.trim()) {
+    arEl.textContent = p.arabe.trim();
+    arEl.style.display = 'block';
+  }
+  // Español
+  if (p.espanol && p.espanol.trim()) {
+    esEl.textContent = '🇪🇸 ' + p.espanol.trim();
+    esEl.style.display = 'block';
+  }
+  // Nota
+  if (p.nota && p.nota.trim()) {
+    noEl.innerHTML = '<b>💡 Nota:</b> ' + p.nota.trim();
+    noEl.style.display = 'block';
+  }
+
+  card.classList.add('visible');
+}
+
+// ─── Acciones del resultado Amazigh ───
+function copiarAmz() {
+  if (!amzLastResult) return;
+  const p = amzLastResult;
+  const partes = [];
+  if (p.tifinagh) partes.push(p.tifinagh);
+  if (p.latino)   partes.push('(' + p.latino + ')');
+  if (p.arabe)    partes.push(p.arabe);
+  if (p.espanol)  partes.push(p.espanol);
+  navigator.clipboard.writeText(partes.join('\n')).then(() => showToast('📋 Copiado'));
+}
+
+function hablarAmz() {
+  if (!amzLastResult) return;
+  const p = amzLastResult;
+  let txt = '';
+  let usarAr = false;
+  if (p.latino) { txt = p.latino; }
+  else if (p.espanol) { txt = p.espanol; }
+  else if (p.arabe) { txt = p.arabe; usarAr = true; }
+  else if (p.tifinagh) { txt = p.tifinagh; usarAr = true; }
+  if (!txt) return;
+  const utt = new SpeechSynthesisUtterance(txt);
+  if (usarAr) {
+    utt.lang = 'ar-MA';
+    utt.rate = 0.8;
+  } else {
+    // Transcripción latina: voz francesa o española muy lenta
+    const voices = speechSynthesis.getVoices();
+    const voiceFr = voices.find(v => v.lang.startsWith('fr'));
+    const voiceEs = voices.find(v => v.lang.startsWith('es'));
+    if (voiceFr) utt.voice = voiceFr;
+    else if (voiceEs) utt.voice = voiceEs;
+    utt.lang = voiceFr ? 'fr-FR' : 'es-ES';
+    utt.rate = 0.65;
+    utt.pitch = 0.9;
+  }
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utt);
+  showToast('🔊 Reproduciendo Amazigh');
+}
+
+function compartirAmz() {
+  if (!amzLastResult) return;
+  const p = amzLastResult;
+  const original = document.getElementById('amz-input').value;
+  const lineas = [`Tánger App ⵣ Amazigh (${AMZ_VARIANTS[amzVariant].name})`, original, '→'];
+  if (p.tifinagh) lineas.push('ⵜⵉⴼⵉⵏⴰⵖ: ' + p.tifinagh);
+  if (p.latino)   lineas.push('🔤 ' + p.latino);
+  if (p.arabe)    lineas.push('🇲🇦 ' + p.arabe);
+  if (p.espanol)  lineas.push('🇪🇸 ' + p.espanol);
+  const msg = lineas.join('\n');
+  if (navigator.share) navigator.share({ text: msg });
+  else navigator.clipboard.writeText(msg).then(() => showToast('Copiado para compartir'));
+}
+
+// ─── Micrófono Amazigh (usa es-ES o ar-MA según dirección) ───
+function toggleAmzMic() {
+  const tieneAPI = ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+  if (!tieneAPI) {
+    showToast('⚠️ Usa Chrome o Safari para el micrófono');
+    document.getElementById('amz-input').focus();
+    return;
+  }
+  if (amzIsRecording) { stopAmzMic(); return; }
+  startAmzMic();
+}
+
+function startAmzMic() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  amzRecognition = new SpeechRecognition();
+
+  // El navegador no reconoce Amazigh: elegimos español o árabe según dirección
+  let recLang = 'es-ES';
+  if (amzAuto) recLang = 'es-ES'; // por defecto en auto
+  else if (amzDir === 'es-amz') recLang = 'es-ES';
+  else if (amzDir === 'amz-es') recLang = 'es-ES'; // mejor aproximación
+  else if (amzDir === 'ar-amz') recLang = 'ar-SA';
+  else if (amzDir === 'amz-ar') recLang = 'es-ES';
+
+  amzRecognition.lang = recLang;
+  amzRecognition.continuous = false;
+  amzRecognition.interimResults = true;
+  amzRecognition.maxAlternatives = 1;
+
+  amzRecognition.onstart = () => {
+    amzIsRecording = true;
+    const mb = document.getElementById('amz-mic-btn');
+    mb.classList.add('recording');
+    mb.textContent = '⏹';
+    document.getElementById('amz-mic-hint').textContent = '🔴 Escuchando... toca para parar';
+    document.getElementById('amz-input').value = '';
+  };
+  amzRecognition.onresult = (e) => {
+    let transcript = '';
+    for (let i = 0; i < e.results.length; i++) transcript += e.results[i][0].transcript;
+    document.getElementById('amz-input').value = transcript;
+  };
+  amzRecognition.onend = () => {
+    const txt = document.getElementById('amz-input').value.trim();
+    stopAmzMic();
+    if (txt) {
+      showToast('✓ Voz capturada — traduciendo...');
+      setTimeout(() => traducirAmazigh(), 300);
+    } else {
+      showToast('No se escuchó nada, inténtalo de nuevo');
+    }
+  };
+  amzRecognition.onerror = (e) => {
+    stopAmzMic();
+    if (e.error === 'not-allowed') showToast('❌ Permiso de micrófono denegado');
+    else if (e.error === 'no-speech') showToast('No se detectó voz');
+    else showToast('Error de micrófono: ' + e.error);
+  };
+  try { amzRecognition.start(); }
+  catch(e) { showToast('No se pudo iniciar el micrófono'); stopAmzMic(); }
+}
+
+function stopAmzMic() {
+  amzIsRecording = false;
+  if (amzRecognition) { try { amzRecognition.stop(); } catch(e){} }
+  const mb = document.getElementById('amz-mic-btn');
+  mb.classList.remove('recording');
+  mb.textContent = '🎤';
+  document.getElementById('amz-mic-hint').textContent = 'Pulsa el micrófono o escribe abajo';
+}
+
+// ─── Frases comunes Amazigh — render ───
+function renderAmzFrases() {
+  const cats = [...new Set(AMZ_FRASES.map(f => f.cat))];
+  const chips = document.getElementById('amz-cat-chips');
+  chips.innerHTML = cats.map(c =>
+    `<button class="chip ${c===amzCurrentCat?'active':''}" onclick="filterAmzCat('${c}')">${c}</button>`
+  ).join('');
+
+  const list = document.getElementById('amz-phrase-list');
+  list.innerHTML = AMZ_FRASES.filter(f => f.cat === amzCurrentCat).map((f, i) => {
+    const v = f.variantes[amzVariant] || f.variantes.tarifit;
+    const safeLat = (v.lat || '').replace(/'/g, "\\'");
+    const safeTif = (v.tif || '').replace(/'/g, "\\'");
+    const safeEs  = (f.es  || '').replace(/'/g, "\\'");
+    return `<div class="amz-phrase-item">
+      <div class="amz-phrase-es">🇪🇸 ${f.es}</div>
+      <div class="amz-phrase-tifinagh">${v.tif}</div>
+      <div class="amz-phrase-latin">${v.lat}</div>
+      <div class="amz-phrase-actions">
+        <button onclick="hablarAmzFrase('${safeLat}','${safeEs}')">🔊 Escuchar</button>
+        <button onclick="copiarAmzFrase('${safeTif}','${safeLat}','${safeEs}')">📋 Copiar</button>
+        <button onclick="usarAmzFrase('${safeEs}')">↑ Usar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterAmzCat(cat) {
+  amzCurrentCat = cat;
+  renderAmzFrases();
+}
+
+function hablarAmzFrase(lat, es) {
+  // Usamos voz española muy lenta para pronunciar la transcripción latina Amazigh
+  // Es la mejor aproximación disponible en navegadores
+  const utt = new SpeechSynthesisUtterance(lat);
+  // Intentar voz española o francesa (más cercana fonéticamente al Amazigh)
+  const voices = speechSynthesis.getVoices();
+  const voiceFr = voices.find(v => v.lang.startsWith('fr'));
+  const voiceEs = voices.find(v => v.lang.startsWith('es'));
+  if (voiceFr) utt.voice = voiceFr;
+  else if (voiceEs) utt.voice = voiceEs;
+  utt.lang = voiceFr ? 'fr-FR' : 'es-ES';
+  utt.rate = 0.65; // muy lento para claridad
+  utt.pitch = 0.9;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utt);
+  showToast('🔊 ' + lat);
+}
+
+function copiarAmzFrase(tif, lat, es) {
+  const txt = `${tif}\n(${lat})\n— ${es}`;
+  navigator.clipboard.writeText(txt).then(() => showToast('📋 Frase copiada'));
+}
+
+function usarAmzFrase(es) {
+  // Cargar la frase en español al input para traducirla a la variante actual
+  setAmzDir('es-amz');
+  document.getElementById('amz-input').value = es;
+  document.getElementById('amz-input').focus();
+  showToast('Frase cargada — pulsa Traducir');
+}
+
+
 renderFrases();
 renderEmergencias();
 renderNumeros();
+renderAmzFrases();
 
 // PWA Install
 let deferredPrompt;
